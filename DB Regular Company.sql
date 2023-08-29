@@ -20,6 +20,13 @@ create table employee(
     constraint pk_employee primary key (Ssn)
 );
 
+alter table employee
+	add constraint fk_employee
+    foreign key (Super_ssn) references employee (Ssn)
+    on delete set null
+    on update cascade; -- atualiza as entidades relacionadas
+
+
 desc employee;
 
 create table department(
@@ -34,12 +41,25 @@ create table department(
     foreign key (Mgr_ssn) references employee(Ssn)
 );
 
+-- 'def', 'company_constraints', 'department_ibfk_1', 'company_constraints', 'department', 'FOREIGN KEY', 'YES'
+-- modificar uma constrain: drop and add
+alter table department drop constraint department_ibfk_1;
+alter table department 
+		add constraint fk_dept foreign key (Mgr_ssn) references employee (Ssn)
+        on update cascade;
+
 create table dept_locations(
 	Dnumber int not null,
     Dlocation varchar(15) not null,
     constraint pk_dept_locations primary key (Dnumber, Dlocation),
     constraint fk_dept_location foreign key (Dnumber) references department (Dnumber)
 );
+
+alter table dept_locations drop constraint fk_dept_location;
+alter table dept_locations
+	add constraint fk_dept_locations foreign key (Dnumber) references department (Dnumber)
+    on delete cascade
+    on update cascade;
 
 create table project(
 	Pname varchar(15) not null,
