@@ -201,3 +201,18 @@ select Pname, Essn, Fname, Hours from project, work_on, employee
 
 ---------------------------------------------
 
+select * from department;
+select * from dept_locations;
+
+-- Cláusula ambígua: --
+-- select * from department, dept_locations
+-- 		where Dnumber = Dnumber;
+
+-- Resolução: através do alias ou AS Statement --
+select Dname, l.Dlocation as Department_location
+		from department as d, dept_locations as l
+        where d.Dnumber = l.Dnumber;
+
+select concat(Fname, ' ', Lname) as Employee from employee;
+
+-------------------------------------------------
