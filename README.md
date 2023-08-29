@@ -18,7 +18,7 @@ O banco de dados é composto por várias tabelas que se relacionam para armazena
 1. **Clone o Repositório**: Comece clonando este repositório para o seu ambiente local:
 
    ```
-   git clone https://github.com/your-username/company-management-system.git
+   git clone https://github.com/franciscorigon/DB_Regular_Company.git
    ```
 
 2. **Configure o Banco de Dados**: Execute as consultas SQL presentes nos arquivos `create_tables.sql` e `insert_data.sql` para criar as tabelas e inserir dados iniciais.
