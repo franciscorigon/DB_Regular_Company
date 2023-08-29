@@ -58,7 +58,7 @@ Este é um projeto em constante evolução, e sua contribuição é bem-vinda! S
 
 Divirta-se explorando e expandindo o Sistema de Gerenciamento de Empresa! Se tiver alguma dúvida ou precisar de assistência, não hesite em entrar em contato.
 
-**Contato:** [LinkedIn](mailto:linkedin.com/in/franciscorigon) linkedin.com/in/franciscorigon/
+**Contato:** [LinkedIn](https://www.linkedin.com/in/franciscorigon)
 
 ⭐️ Se este projeto foi útil para você, não deixe de dar uma estrela!
 
