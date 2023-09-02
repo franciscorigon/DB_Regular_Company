@@ -216,3 +216,50 @@ select Dname, l.Dlocation as Department_location
 select concat(Fname, ' ', Lname) as Employee from employee;
 
 -------------------------------------------------
+
+--
+--
+-- Expressões e alias
+--
+--
+-- Recolhendo valor do INSS
+SELECT Fname, Lname, Salary, ROUND(Salary*0.011,2) AS INSS from employee;
+--
+--
+-- Definir um aumento salarial para os gerentes que trabalham no projeto associado ao ProdutoX
+SELECT * 
+	FROM employee e, work_on AS w, project as p
+    WHERE (e.Ssn = w.Essn and w.Pno = p.Pnumber and p.Pname='ProductX');
+    
+SELECT CONCAT(Fname, ' ', Lname) AS Complete_name, Salary, round(Salary*1.1,2) as increased_salary
+	FROM employee e, work_on AS w, project as p
+    WHERE (e.Ssn = w.Essn and w.Pno = p.Pnumber and p.Pname='ProductX');
+
+
+--
+--
+-- recuperando todos os gerentes que trabalham em Stafford
+SELECT Dname as Department_name, concat(Fname, ' ', Lname) as Manager from department d, dept_locations l, employee e
+	WHERE d.Dnumber = l.Dnumber and Dlocation = 'Stafford' and Mgr_ssn = e.Ssn;
+
+
+-- recuperando todos os gerentes, departamentos e seus nomes
+SELECT Dname as Department_name, concat(Fname, ' ', Lname) as Manager, Dlocation from department d, dept_locations l, employee e
+	WHERE d.Dnumber = l.Dnumber and Mgr_ssn = e.Ssn;
+    
+--
+--
+-- like e between
+-- 
+--
+select * from employee;
+	
+select Fname as First_name, Lname as Last_name, Address from emplyoee
+	where (Address like '%Houston%');
+    
+select * from department where Dname = 'Research' or Dname = 'Administration';
+
+select * from employee;
+
+-------------------------------------------------
+
