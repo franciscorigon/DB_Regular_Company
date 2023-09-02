@@ -298,7 +298,7 @@ select distinct R.A from R where R.A in (select S.A from S);
 
 -------------------------------------------------
 
-    -- cláusulas com exists e unique
+    -- clausulas com exists e unique
     
     
     --
@@ -326,7 +326,7 @@ select distinct R.A from R where R.A in (select S.A from S);
 
 -------------------------------------------------
 
-	-- ORDENAÇÃO
+	-- ORDENACAO
     --
     --
 	
@@ -344,7 +344,7 @@ select distinct R.A from R where R.A in (select S.A from S);
 
 		-------------------------------------------------
 
-		-- funções e cláusulas de agrupamento
+		-- funcoes e clausulas de agrupamento
 --
 --
 
@@ -411,5 +411,47 @@ update employee set Salary =
 	end;
         
 select Fname, Salary, Dno from employee;
+
+-------------------------------------------------
+
+--
+--
+-- JOIN Statement
+-- 
+--
+
+-- JOIN ON -> INNER JOIN ON
+
+select * from employee join department
+	ON Ssn = Mgr_ssn;
+
+select Fname, LName, Address
+	FROM(employee join department on Dno = Dnumber)
+    where Dname = 'Research';
+    
+select Dname as Department, Dept_create_date as Creation_date, Dlocation as Location
+	from department join dept_locations USING (Dnumber)
+	order by Dept_create_date;
+    
+    
+-- CROSS JOIN (produto cartesiano)
+
+select Fname, Lname, Dependent_name, Relationship from employee 
+	cross join dependent
+    order by Fname;
+    
+--
+--    
+-- JOIN com mais de 3 tabelas
+--
+--
+
+-- project, work_on & empolyee
+select concat(Fname, ' ', Lname) as Employee_name, Pname as Project_name, Plocation as Project_location from employee 
+	inner join work_on on Ssn = Essn
+    inner join project on Pno = Pnumber
+    where Pname like 'Product%'
+    -- group by Pnumber
+    -- having COUNT(*) > 2;
 
 -------------------------------------------------
