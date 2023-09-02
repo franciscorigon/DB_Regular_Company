@@ -455,3 +455,20 @@ select concat(Fname, ' ', Lname) as Employee_name, Pname as Project_name, Plocat
     -- having COUNT(*) > 2;
 
 -------------------------------------------------
+
+--
+--
+-- OUTER JOIN
+--
+--
+select * from employee;
+select * from dependent;
+
+select * from employee
+	inner join dependent on Ssn = Essn;
+    
+select * from employee
+	left join dependent on Ssn = Essn;
+    
+select * from employee
+	right outer join dependent on Ssn = Essn;
