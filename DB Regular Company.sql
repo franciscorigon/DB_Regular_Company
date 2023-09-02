@@ -341,3 +341,31 @@ select distinct R.A from R where R.A in (select S.A from S);
 		FROM department as d, employee e, work_on w, project p
         WHERE (d.Dnumber = e.Dno and eSsn = w.Essn and w.Pno = p.Pnumber)
         ORDER BY d.Dname desc, e.Fname asc, e.Lname asc;
+
+		-------------------------------------------------
+
+		-- funções e cláusulas de agrupamento
+--
+--
+
+-- 
+select count(*) as counter from employee, department
+	where Dno = Dnumber and Dname = 'Research';
+    
+select count(*) as counter, round(avg(Salary), 2) from employee
+	group by Dno;
+
+select count(*) as Number_of_employees, round(avg(Salary), 2) as Salary_avg from employee
+	group by Dno;
+    
+    SELECT Pnumber, Pname, count(*) as Employees
+		FROM project, work_on
+        WHERE Pnumber = PNO
+        GROUP BY Pnumber, Pname;
+        
+SELECT COUNT(DISTINCT Salary) from employee;
+
+SELECT sum(Salary) as total_salry, max(Salary) as Max_salary, min(Salary) as min_salry, round(avg(Salary),2) as AVG_slary from employee;
+
+-------------------------------------------------
+
