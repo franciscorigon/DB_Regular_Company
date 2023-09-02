@@ -369,3 +369,26 @@ SELECT sum(Salary) as total_salry, max(Salary) as Max_salary, min(Salary) as min
 
 -------------------------------------------------
 
+-- GROUP BY | HAVING | ORDER BY
+-- sequencia ->
+--
+
+SELECT Pnumber, Pname, count(*)
+	FROM project, work_on
+    WHERE Pnumber = Pno
+    GROUP BY Pnumber, Pname
+    HAVING count(*) > 2;
+    
+    SELECT Dno, count(*)
+		FROM employee
+        WHERE Salary > 20000
+        GROUP BY Dno
+        HAVING count(*) > 2;
+        
+	 SELECT Dno as Department, count(*) as Number_of_employees
+		FROM employee
+        WHERE Salary > 20000
+        AND Dno IN (SELECT Dno FROM employee
+					GROUP BY Dno
+                    HAVING count(*) > 2)
+        GROUP BY Dno;
