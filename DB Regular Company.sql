@@ -323,3 +323,21 @@ select distinct R.A from R where R.A in (select S.A from S);
         
 	-- qual projeto o funcionário trabalha?
 	SELECT DISTINCT Essn, Pno FROM work_on WHERE Pno IN (1,2,3);
+
+-------------------------------------------------
+
+	-- ORDENAÇÃO
+    --
+    --
+	
+    -- nome do departamento e gerente em ordem alfabetica 
+    SELECT distinct d.Dname, Fname, Lname
+		from department as d, employee e, work_on w, project p
+		where (d.Dnumber = e.Dno AND e.Ssn = d.Mgr_ssn AND w.Pno = p.Pnumber)
+        order by e.Fname;
+        
+	-- recuperar todos empregados e seus projeos em andamento
+    SELECT DISTINCT d.Dname, e.Fname, e.Lname, p.Pname as Project_Name
+		FROM department as d, employee e, work_on w, project p
+        WHERE (d.Dnumber = e.Dno and eSsn = w.Essn and w.Pno = p.Pnumber)
+        ORDER BY d.Dname desc, e.Fname asc, e.Lname asc;
