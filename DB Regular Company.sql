@@ -297,3 +297,29 @@ select * from S where A not in (select A from R);
 select distinct R.A from R where R.A in (select S.A from S);
 
 -------------------------------------------------
+
+    -- cláusulas com exists e unique
+    
+    
+    --
+    -- Quais employees possuem dependents?
+    --
+    SELECT e.Fname, e.Lname FROM employee AS e
+		WHERE EXISTS (SELECT * FROM dependent as d
+					  WHERE e.Ssn = d.Essn AND Relationship = 'Son');
+                      
+	-- sem dependentes?
+    SELECT e.Fname, e.Lname FROM employee AS e
+		WHERE NOT EXISTS (SELECT * FROM dependent as d
+					  WHERE e.Ssn = d.Essn);
+
+	-- 
+	SELECT e.Fname, e.Lname FROM employee AS e, department d
+		WHERE (e.Ssn = d.Mgr_ssn) AND EXISTS (SELECT * FROM dependent AS d WHERE e.Ssn = d.Essn);
+        
+	-- dois ou mais dependentes?
+    SELECT Fname, Lname FROM employee
+		WHERE(SELECT COUNT(*) FROM dependent WHERE Ssn = Essn) >= 2;
+        
+	-- qual projeto o funcionário trabalha?
+	SELECT DISTINCT Essn, Pno FROM work_on WHERE Pno IN (1,2,3);
